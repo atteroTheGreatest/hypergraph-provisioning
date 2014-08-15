@@ -14,7 +14,6 @@
   apt: pkg={{ item }} state=installed update_cache=yes
   with_items: ipython_packages
 
-
 - name: Pull sources from the repository.
   git: repo="https://github.com/atteroTheGreatest/hypergraph" dest="{{ project_dir }}/code/"
 

@@ -20,7 +20,7 @@ Box will be configured in a following way:
  - create bridged private network, available on http://172.16.0.4/
 
 Vagrant can use various provisioners such as puppet, chef or ansible.
-To provision this project I used ansible which is very simple yet powerfull
+To provision this project I used ansible which is very simple yet powerful
 and well [documented](http://docs.ansible.com/).
 
 After basic machine setup there is an ansible provisioning phase.
@@ -57,3 +57,13 @@ $ vagrant up
 and go to http://172.16.0.4:8888/ in your browser. Enjoy :).
 
 You can also ssh to your machine using `vagrant ssh`.
+
+##Potential improvements
+
+Installing scipy/numpy in virtualenv takes too much time. Using
+system packages could be much faster.
+
+To do it:
+- choose dependencies you want to "outsource" to packet manager
+- remove those dependencies from `requirements.txt`
+- add dependencies (with appropriate names for your packet manager to `vars/main.yml
