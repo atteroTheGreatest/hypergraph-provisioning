@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb, override|
       override.vm.box = "trusty"
       override.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-      vb.memory = 2048
+      vb.memory = 2048  # Needed for compilation during provisioning, you can make it smaller afterwards
   end
 
   # Create a public network, which generally matched to bridged network.
