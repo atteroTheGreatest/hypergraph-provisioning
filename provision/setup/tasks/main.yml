@@ -1,0 +1,34 @@
+- name: Install basic dependencies
+  sudo: yes
+  apt: pkg={{ item }} state=installed update_cache=yes
+  with_items:
+      - python3-dev
+      - python-dev
+      - python-virtualenv
+      - python3-setuptools
+      - git
+      - htop
+
+- name: Install Ipython dependencies
+  sudo: yes
+  apt: pkg={{ item }} state=installed update_cache=yes
+  with_items: ipython_packages
+
+
+- name: Pull sources from the repository.
+  git: repo="https://github.com/atteroTheGreatest/hypergraph" dest="{{ project_dir }}/code/"
+
+- name: Create virtualenv
+  shell: 'virtualenv -p /usr/bin/python3.4 {{ project_dir }}/env/'
+
+- name: Install everything in virtualenv
+  pip: requirements={{ project_dir }}/code/requirements.txt virtualenv={{ project_dir }}/env
+
+- name: Setup notebook in upstart
+  sudo: yes
+  template: src="setup/templates/notebook.conf.j2" dest="/etc/init/notebook.conf" backup=yes mode=0644
+
+- name: Start Notebook
+  sudo: yes
+  service: name=notebook state=started
+

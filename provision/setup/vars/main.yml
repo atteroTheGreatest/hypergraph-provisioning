@@ -1,0 +1,10 @@
+# list of dependencies
+ipython_packages:
+    - libfreetype6
+    - libfreetype6-dev
+    - libpng-dev
+    - pkg-config
+    - gfortran
+    - libopenblas-dev
+    - liblapack-dev
+project_dir: "/home/vagrant/hypergraph"

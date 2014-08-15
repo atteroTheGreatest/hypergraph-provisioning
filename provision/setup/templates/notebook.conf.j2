@@ -1,0 +1,11 @@
+description "IPython Notebook"
+
+stop on runlevel[06]
+
+respawn
+respawn limit 10 5 # respawn up to 10 times, waiting 5 seconds each time
+
+
+chdir {{ project_dir }}/code
+exec {{ project_dir }}/env/bin/ipython3 notebook --no-browser --ip=0.0.0.0
+
