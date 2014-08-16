@@ -23,6 +23,12 @@
 - name: Install everything in virtualenv
   pip: requirements={{ project_dir }}/code/requirements.txt virtualenv={{ project_dir }}/env
 
+- name: Deploy hypergraph installing library
+  template: 'src=setup/templates/install_hypergraph.sh.j2 dest={{ project_dir }}/code/install.sh mode=755'
+
+- name: Install hypergraph library in virtualenv using setup.py
+  command: "{{ project_dir }}/code/install.sh"
+
 - name: Setup notebook in upstart
   sudo: yes
   template: src="setup/templates/notebook.conf.j2" dest="/etc/init/notebook.conf" backup=yes mode=0644
